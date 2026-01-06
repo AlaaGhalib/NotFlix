@@ -1,88 +1,112 @@
 import { createTheme } from "@mui/material/styles";
 
-export const lightTheme = createTheme({
-  palette: {
-    mode: "light",
-    primary: {
-      main: "#6366F1", // indigo
-    },
-    secondary: {
-      main: "#22C55E", // green
-    },
-    background: {
-      default: "#F9FAFB",
-      paper: "#FFFFFF",
-    },
-  },
-  shape: {
-    borderRadius: 12,
-  },
-  typography: {
-    fontFamily: [
-      "Inter",
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      "sans-serif",
-    ].join(","),
-    h1: { fontWeight: 700 },
-    h2: { fontWeight: 700 },
-    h3: { fontWeight: 600 },
-    button: {
-      textTransform: "none",
-      fontWeight: 600,
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 10,
-          paddingInline: 16,
-          paddingBlock: 8,
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          borderRadius: 16,
-        },
-      },
-    },
-  },
-});
-
-export const darkTheme = createTheme({
+export const notflixTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#818CF8",
-    },
-    secondary: {
-      main: "#4ADE80",
+      main: "#E50914", // Netflix red
     },
     background: {
-      default: "#0F172A",
-      paper: "#111827",
+      default: "#000000",
+      paper: "#141414",
+    },
+    text: {
+      primary: "#FFFFFF",
+      secondary: "#B3B3B3",
     },
   },
+
   shape: {
-    borderRadius: 12,
+    borderRadius: 4, // Netflix cards are sharp
   },
+
   typography: {
     fontFamily: [
-      "Inter",
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
+      "Netflix Sans",
+      "Helvetica Neue",
+      "Arial",
       "sans-serif",
     ].join(","),
+
+    h1: {
+      fontWeight: 900,
+      letterSpacing: "-0.02em",
+    },
+    h2: {
+      fontWeight: 800,
+    },
+    h3: {
+      fontWeight: 700,
+    },
+    h4: {
+      fontWeight: 600,
+    },
+
+    body1: {
+      color: "#E5E5E5",
+    },
+
     button: {
       textTransform: "none",
-      fontWeight: 600,
+      fontWeight: 700,
+    },
+  },
+
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: "#000",
+        },
+      },
+    },
+
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(0,0,0,0.85)",
+          backdropFilter: "blur(6px)",
+          boxShadow: "none",
+        },
+      },
+    },
+
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 2,
+          padding: "8px 18px",
+          fontSize: "0.9rem",
+        },
+        containedPrimary: {
+          backgroundColor: "#E50914",
+          "&:hover": {
+            backgroundColor: "#F40612",
+          },
+        },
+      },
+    },
+
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#141414",
+          boxShadow: "none",
+          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          "&:hover": {
+            transform: "scale(1.08)",
+            zIndex: 2,
+          },
+        },
+      },
+    },
+
+    MuiSkeleton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#222",
+        },
+      },
     },
   },
 });
