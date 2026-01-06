@@ -1,14 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import { lightTheme } from "./theme";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { router } from "./router";
+import { notflixTheme } from "./theme";
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ThemeProvider theme = {lightTheme}> 
-      <CssBaseline/> 
-    <App />
-     </ThemeProvider>
-  </StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <ThemeProvider theme={notflixTheme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </React.StrictMode>
+);
