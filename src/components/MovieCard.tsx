@@ -10,7 +10,7 @@ export default function MovieCard({ movie }: Props) {
     <Card
       sx={{
         transition: "transform .2s",
-        "&:hover": { transform: "scale(1.05)" },
+        "&:hover": { transform: "scale(1.08)" },
       }}
     >
       <CardMedia
