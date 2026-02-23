@@ -25,89 +25,48 @@ A tiny Netflix-like UI demo built with React, TypeScript and MUI. It showcases a
 
 - Build for production:
 
-  -
-
-  # Notflix (parody)
-
-  A small demo app to showcase a Netflix-style UI and front-end skills.
-
-  Quick summary
-  - Stack: React 19 + TypeScript, Vite, MUI v7, react-router-dom.
-  - Purpose: UI/demo only — uses mocked movie data and a sample video.
-
-  Quick start
   ```bash
-  npm install
-  npm run dev -- --host
+  npm run build
   ```
 
-  Project layout
-  - `src/main.tsx` — app entry and providers
-  - `src/router.tsx` — routes (`/`, `/browse`, `/movie/:id`, `/watch/:id`)
-  - `src/theme.ts` — MUI theme & overrides
-  - `src/pages` — `Browse`, `Movie`, `Watch`, `Home`, `NotFound`
-  - `src/components` — `MovieCard`, `MovieCardSkeleton`, `Navbar`
-  - `src/mock` — `movies.ts`, `api.ts` (mock data + fetch helpers)
-  - `src/hooks/useInfiniteScroll.ts` — intersection observer helper
+- Preview the production build:
 
-  Customizing
-  - Swap the sample video in `src/pages/Watch.tsx`.
-  - Edit `src/mock/movies.ts` to change mock fields shown in the UI.
-  - Tweak colors/typography in `src/theme.ts`.
+  ```bash
+  npm run preview
+  ```
 
-  Development tips
-  - Keep React dependencies deduped (Vite alias is configured to avoid duplicate React instances).
-  - Use the skeleton components for smooth loading UX when adding async data.
+**Notes / Troubleshooting**
+- If you see the React "Invalid hook call" error in the browser console, the project has a Vite alias configured in `vite.config.ts` to force a single `react` / `react-dom` instance. That prevents duplicate React copies in development builds.
 
-  That's it — let me know if you want the Play buttons wired to `/watch/:id` or overlay behavior adjusted.
+**Project Layout (important files)**
+- `src/main.tsx`: App entry — wraps the app with `ThemeProvider` and `RouterProvider`.
+- `src/router.tsx`: App routes — includes `/, /browse, /movie/:id, /watch/:id`.
+- `src/theme.ts`: MUI theme and overrides (Netflix-like red, button styles, typography).
+- `src/pages/Browse.tsx`: Netflix-style browse view — hero + horizontal rows and skeletons.
+- `src/pages/Movie.tsx`: Movie details page with hero and an overlay play button.
+- `src/pages/Watch.tsx`: Dedicated full-screen watch route (`/watch/:id`) using a sample video.
+- `src/components/MovieCard.tsx`: Movie card UI and navigation to movie page.
+- `src/components/MovieCardSkeleton.tsx`: Skeleton placeholder used while loading.
+- `src/mock/movies.ts` and `src/mock/api.ts`: Simple mock data and fetch helpers used by the demo.
+- `src/hooks/useInfiniteScroll.ts`: IntersectionObserver hook used to load more content.
 
-      // Other configs...
+**Customizing**
+- Change the placeholder video used by the watch page in `src/pages/Watch.tsx` (currently Big Buck Bunny sample).
+- Add fields to the mock movie data in `src/mock/movies.ts` (description, backdrop, director, runtime, etc.) and update the UI references.
+- Theme overrides for colors, buttons and typography live in `src/theme.ts`.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Development Tips**
+- When adding third-party libraries that also depend on React, ensure they resolve to the same React instance to avoid hooks-related runtime errors.
+- Use the `MovieCard` and `MovieCardSkeleton` components as building blocks for additional rows and previews.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+If you'd like, I can:
+- wire Browse/Movie Play buttons to navigate to the `/watch/:id` route instead of opening the overlay, or
+- add hover-preview behavior for cards (thumbnail + brief meta), or
+- add tests and a small CI workflow.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+License: MIT (demo project)
+# React + TypeScript + Vite
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
