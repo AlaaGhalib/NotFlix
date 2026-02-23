@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material"; // Using MUI v6 Grid
 import MovieCard from "../components/MovieCard";
 import MovieCardSkeleton from "../components/MovieCardSkeleton";
 import type { Movie } from "../mock/movies";
@@ -16,8 +16,6 @@ export default function Browse() {
 
   const loadMore = useCallback(async () => {
     setLoading(true);
-
-    // fake API fetch with latency
     const newMovies = await fetchMovies(page, 20, 1200);
     setMovies((prev) => [...prev, ...newMovies]);
     setPage((p) => p + 1);
@@ -26,24 +24,23 @@ export default function Browse() {
   }, [page]);
 
   useEffect(() => {
-    loadMore(); // initial load
+    loadMore();
   }, []);
 
   const loadMoreRef = useInfiniteScroll(loadMore, loading);
 
   return (
     <Box sx={{ p: 4 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
         Browse Movies
       </Typography>
 
       <Grid container spacing={2}>
         {/* REAL MOVIES */}
         {movies.map((movie) => (
-          <Grid
-            size={{ xs: 12, sm: 6, md: 4, lg: 1}}
-            key={movie.id}
-            sx={{ display: "flex" }} // ensures MovieCard fills the column
+          <Grid 
+            key={movie.id} 
+            size={{ xs: 6, sm: 4, md: 3, lg: 2, xl: 1.5 }} // This defines the width
           >
             <MovieCard movie={movie} />
           </Grid>
@@ -52,18 +49,16 @@ export default function Browse() {
         {/* SKELETONS */}
         {(loading || initialLoad) &&
           Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-            <Grid
-              size={{ xs: 12, sm: 6, md: 4, lg: 1}} // <-- ADD BREAKPOINTS (must match real movies)
-              key={`skeleton-${i}`}
-              sx={{ display: "flex" }} // ensures Skeleton fills the column
+            <Grid 
+              key={`skeleton-${i}`} 
+              size={{ xs: 6, sm: 4, md: 3, lg: 2, xl: 1.5 }} // Keep this identical to the cards
             >
               <MovieCardSkeleton />
             </Grid>
           ))}
       </Grid>
 
-      {/* Infinite scroll trigger */}
-      <Box ref={loadMoreRef} sx={{ height: 1 }} />
+      <Box ref={loadMoreRef} sx={{ height: 10, mt: 4 }} />
     </Box>
   );
 }
