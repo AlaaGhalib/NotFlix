@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Typography, Box, Button, CircularProgress, Grid } from "@mui/material";
+import { Typography, Box, Button, CircularProgress, Grid, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import type { Movie as MovieType } from "../mock/movies";
 import { fetchMovieById } from "../mock/api"; // <-- Importing your new function
 
@@ -9,6 +10,8 @@ export default function Movie() {
   const navigate = useNavigate();
   const [movie, setMovie] = useState<MovieType | null>(null);
   const [loading, setLoading] = useState(true);
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const getMovie = async () => {
@@ -47,6 +50,45 @@ export default function Movie() {
 
   return (
     <Box sx={{ bgcolor: "background.default", color: "text.primary" }}>
+      {/* Video overlay */}
+      {playing && (
+        <Box
+          sx={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1400,
+            bgcolor: "rgba(0,0,0,0.95)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            p: 2,
+          }}
+        >
+          <IconButton
+            onClick={() => {
+              if (videoRef.current) videoRef.current.pause();
+              setPlaying(false);
+            }}
+            sx={{ position: "absolute", top: 12, right: 12, color: "#fff" }}
+            aria-label="close player"
+          >
+            <CloseIcon />
+          </IconButton>
+
+          <Box sx={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <video
+              ref={videoRef}
+              src={"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"}
+              poster={movie.poster}
+              controls
+              autoPlay
+              playsInline
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+            />
+          </Box>
+        </Box>
+      )}
+
       {/* Hero section */}
       <Box
         sx={{
@@ -72,7 +114,7 @@ export default function Movie() {
               </Typography>
 
               <Box sx={{ display: "flex", gap: 2, alignItems: "center", mb: 2 }}>
-                <Button variant="contained" color="error" size="large" sx={{ px: 4 }}>
+                <Button onClick={() => setPlaying(true)} variant="contained" color="error" size="large" sx={{ px: 4 }}>
                   ▶ Play
                 </Button>
                 <Button variant="contained" color="secondary" size="large" sx={{ px: 3 }}>
