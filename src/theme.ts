@@ -6,6 +6,9 @@ export const notflixTheme = createTheme({
     primary: {
       main: "#E50914", // Netflix red
     },
+    error: {
+      main: "#E50914",
+    },
     background: {
       default: "#000000",
       paper: "#141414",
@@ -83,6 +86,26 @@ export const notflixTheme = createTheme({
           "&:hover": {
             backgroundColor: "#F40612",
           },
+        },
+        containedError: {
+          backgroundColor: "#E50914",
+          color: "#fff",
+          boxShadow: "0 6px 20px rgba(229,9,20,0.28)",
+          "&:hover": {
+            backgroundColor: "#F40612",
+          },
+        },
+        sizeLarge: {
+          padding: "12px 28px",
+          fontSize: "1rem",
+        },
+      },
+    },
+
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: "inherit",
         },
       },
     },

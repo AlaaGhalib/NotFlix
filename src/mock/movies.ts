@@ -3,6 +3,11 @@ export type Movie = {
   title: string;
   poster: string;
   year: number;
+  description?: string;
+  genre?: string;
+  director?: string;
+  runtime?: string | number;
+  backdrop?: string;
 };
 
 const titles = [
