@@ -22,15 +22,7 @@ A tiny Netflix-like UI demo built with React, TypeScript and MUI. It showcases a
   ```bash
   npm run dev -- --host
   ```
-
-- Build for production:
-
   -
-
-  # Notflix (parody)
-
-  A small demo app to showcase a Netflix-style UI and front-end skills.
-
   Quick summary
   - Stack: React 19 + TypeScript, Vite, MUI v7, react-router-dom.
   - Purpose: UI/demo only — uses mocked movie data and a sample video.
