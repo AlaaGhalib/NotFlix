@@ -34,10 +34,6 @@ A tiny Netflix-like UI demo built with React, TypeScript and MUI. It showcases a
   ```bash
   npm run preview
   ```
-
-**Notes / Troubleshooting**
-- If you see the React "Invalid hook call" error in the browser console, the project has a Vite alias configured in `vite.config.ts` to force a single `react` / `react-dom` instance. That prevents duplicate React copies in development builds.
-
 **Project Layout (important files)**
 - `src/main.tsx`: App entry — wraps the app with `ThemeProvider` and `RouterProvider`.
 - `src/router.tsx`: App routes — includes `/, /browse, /movie/:id, /watch/:id`.
@@ -54,19 +50,4 @@ A tiny Netflix-like UI demo built with React, TypeScript and MUI. It showcases a
 - Change the placeholder video used by the watch page in `src/pages/Watch.tsx` (currently Big Buck Bunny sample).
 - Add fields to the mock movie data in `src/mock/movies.ts` (description, backdrop, director, runtime, etc.) and update the UI references.
 - Theme overrides for colors, buttons and typography live in `src/theme.ts`.
-
-**Development Tips**
-- When adding third-party libraries that also depend on React, ensure they resolve to the same React instance to avoid hooks-related runtime errors.
-- Use the `MovieCard` and `MovieCardSkeleton` components as building blocks for additional rows and previews.
-
 ---
-
-If you'd like, I can:
-- wire Browse/Movie Play buttons to navigate to the `/watch/:id` route instead of opening the overlay, or
-- add hover-preview behavior for cards (thumbnail + brief meta), or
-- add tests and a small CI workflow.
-
-License: MIT (demo project)
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
