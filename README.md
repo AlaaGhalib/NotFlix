@@ -1,7 +1,7 @@
 # Notflix
 
 A tiny Netflix-like UI demo built with React, TypeScript and MUI. It showcases a hero-style movie layout, horizontally scrollable rows, skeleton loaders, and an in-app watch player (uses a placeholder sample video).
-
+![Notflix Browse Page](./images/pic1.png)
 **Stack**
 - **Framework:** React 19
 - **Bundler / Dev server:** Vite (rolldown-vite shim)
