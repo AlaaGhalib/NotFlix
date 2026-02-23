@@ -41,6 +41,7 @@ export default function Browse() {
         {/* REAL MOVIES */}
         {movies.map((movie) => (
           <Grid
+            size={{ xs: 12, sm: 6, md: 4, lg: 1}}
             key={movie.id}
             sx={{ display: "flex" }} // ensures MovieCard fills the column
           >
@@ -52,6 +53,7 @@ export default function Browse() {
         {(loading || initialLoad) &&
           Array.from({ length: SKELETON_COUNT }).map((_, i) => (
             <Grid
+              size={{ xs: 12, sm: 6, md: 4, lg: 1}} // <-- ADD BREAKPOINTS (must match real movies)
               key={`skeleton-${i}`}
               sx={{ display: "flex" }} // ensures Skeleton fills the column
             >
