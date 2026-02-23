@@ -35,6 +35,12 @@ A tiny Netflix-like UI demo built with React, TypeScript and MUI. It showcases a
   - Stack: React 19 + TypeScript, Vite, MUI v7, react-router-dom.
   - Purpose: UI/demo only — uses mocked movie data and a sample video.
 
+  Screenshots
+
+  ![pic1](images/pic1.png)
+
+  ![pic2](images/pic2.png)
+
   Quick start
   ```bash
   npm install
